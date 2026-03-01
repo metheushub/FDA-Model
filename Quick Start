@@ -1,0 +1,15 @@
+from fda_model import FDAModel
+import numpy as np
+
+# Load high-volatility sequence data (e.g., ETH/XRP)
+data = np.loadtxt("market_data.csv")
+
+# Initialize the Distillation Framework
+# delta: convergence threshold; w_param: RMS window size
+model = FDAModel(k=3, s=365, delta=0.05, w_param=10)
+
+# Execute the Stacked Decomposition and Feature Aggregation workflow
+# This returns the aggregated results from the specified external Predictors
+results = model.run_fda_workflow(data)
+
+print(f"Final Prediction Results: {results}")
